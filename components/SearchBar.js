@@ -30,11 +30,7 @@ export default function SearchBar({ onBeforeSearch, onAfterSearch }) {
 						})
 							.then(resp => resp.json())
 							.then(data => {
-								console.log(data)
 								onAfterSearch(data)
-							})
-							.catch(error => {
-								console.log(error)
 							})
 					}}
 				>

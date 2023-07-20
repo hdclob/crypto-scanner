@@ -1,27 +1,22 @@
-const axios = require('axios')
+import EtherScanner from "../../lib/scanners/EtherScanner";
+import BscScanner from "../../lib/scanners/BscScanner";
 
 export default async function handler(req, res) {
 	if (req.method === 'POST') {
 		const { searchValue } = req.body;
 
 		try {
-			const response = await axios.get(`https://etherscan.io/searchHandler?term=${searchValue}&filterby=0`);
+			const etherScanner = new EtherScanner(searchValue);
+			const bscScanner = new BscScanner(searchValue);
 
-			let data = response.data;
+			let etherData = await etherScanner.fetchData();
+			let bscData = await bscScanner.fetchData();
 
-			for (const item of data) {
-				if (item.img.length > 0 && !item.img.startsWith('http')) {
-					item.img = `https://etherscan.io/token/images/${item.img}`;
-				}
-			}
-
-			res.status(200).json(data);
+			res.status(200).json(etherData);
 		} catch (error) {
 			console.error(error);
 			res.status(500).json({ error: 'Internal server error' });
 		}
-
-		res.status(200).json({ searchValue });
 	} else {
 		res.status(405).end();
 	}

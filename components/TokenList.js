@@ -2,7 +2,7 @@ export default function TokenList({ data, loading }) {
 	if (loading) {
 		return (
 			<>
-				<span className="bi bi-arrow-repeat">Loading</span>
+				<span className="spinner-border"></span>
 			</>
 		)
 	}
