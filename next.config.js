@@ -5,7 +5,7 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'storage.googleapis.com'
-			},
+			}
 		],
 	},
 }

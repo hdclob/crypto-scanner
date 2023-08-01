@@ -1,6 +1,6 @@
 export default function Layout({ children }) {
 	return (
-		<div className="container my-5">
+		<div className="container-fluid my-5">
 			{children}
 		</div>
 	)

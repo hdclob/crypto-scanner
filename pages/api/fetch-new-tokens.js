@@ -1,11 +1,13 @@
 import DexToolsScanner from "../../lib/scanners/DexToolsScanner";
 
+const fs = require('fs');
+
 export default async function handler(req, res) {
 	if (req.method === 'POST') {
 		try {
 			const dexToolsScanner = new DexToolsScanner();
 
-			let data = await dexToolsScanner.fetchData();
+			let data = await dexToolsScanner.fetchNewestTokens();
 
 			res.status(200).json(data);
 		} catch (error) {
